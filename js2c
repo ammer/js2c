@@ -4,6 +4,8 @@ var program = require('commander'),
     fs = require('fs'),
     esprima = require('esprima');
 
+var js2c = require('./lib/transformer.js');
+
 program
     .version(require('./package.json').version)
     .usage('<infile> <outfile>')
@@ -26,7 +28,8 @@ try {
 var ast = esprima.parse(content);
 
 // TODO
-var cSource = ast;
+var transformer = new js2c.Transformer(ast);
+var cSource = transformer.transfer();
 
 if (program.args.length === 2) {
     var outfile = program.args[1];
