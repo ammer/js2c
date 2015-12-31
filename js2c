@@ -27,8 +27,7 @@ try {
 
 var ast = esprima.parse(content);
 
-// TODO
-var transformer = new js2c.Transformer(ast);
+var transformer = new js2c.Transformer(ast, "entry"); // TODO
 var cSource = transformer.transfer();
 
 if (program.args.length === 2) {

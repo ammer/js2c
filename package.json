@@ -19,6 +19,7 @@
   "license": "MIT",
   "dependencies": {
     "commander": "^2.9.0",
-    "esprima": "^2.7.1"
+    "esprima": "^2.7.1",
+    "underscore": "^1.8.3"
   }
 }
