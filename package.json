@@ -1,0 +1,24 @@
+{
+  "name": "js2c",
+  "version": "0.0.1",
+  "description": "transform javascript-like script program to c source code",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.org/ammer/js2c.git"
+  },
+  "keywords": [
+    "javascript",
+    "c",
+    "script"
+  ],
+  "author": "ammer.y@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "esprima": "^2.7.1"
+  }
+}
