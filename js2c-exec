@@ -1,19 +1,16 @@
 #! /usr/bin/env node
 
-var program = require('commander');
+var program = require('commander'),
+    fs = require('fs');
 
 program
     .version(require('./package.json').version)
-
-program
     .alias('e')
     .description('hello')
     .usage('<infile>')
     .option('-m, --mock <path>', 'function definition file')
     .parse(process.argv);
 
-var //js2c = require('./lib/exec.js'),
-    fs = require('fs');
 
 // mock
 var mockFile = program.mock;
