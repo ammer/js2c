@@ -1,7 +1,7 @@
 {
-    httpPost: {
-	returnType: "void",
-	paramTypes: [
+    "httpPost": {
+	"returnType": "void",
+	"paramTypes": [
 	    "char *",
 	    "char *",
 	    "void *(char *)",
@@ -9,43 +9,43 @@
 	]
     },
 
-    httpGet: {
-	returnType: "void",
-	paramTypes: [
+    "httpGet": {
+	"returnType": "void",
+	"paramTypes": [
 	    "char *",
 	    "void *(char *)",
 	    "void *(int, char *)"
 	]
     },
 
-    numBetween: {
-	returnType: "double",
-	paramTypes: [
+    "numBetween": {
+	"returnType": "double",
+	"paramTypes": [
 	    "char *",
 	    "char *"
 	]
     },
 
-    messageBox: {
-	returnType: "void",
-	paramTypes: [
+    "messageBox": {
+	"returnType": "void",
+	"paramTypes": [
 	    "char *"
 	]
     },
 
-    finish: {
-	returnType: "void",
-	paramTypes: []
+    "finish": {
+	"returnType": "void",
+	"paramTypes": []
     },
 
-    failed: {
-	returnType: "void",
-	paramTypes: []
+    "failed": {
+	"returnType": "void",
+	"paramTypes": []
     },
 
-    hasString: {
-	returnType: "int",
-	paramTypes: [
+    "hasString": {
+	"returnType": "int",
+	"paramTypes": [
 	    "char *",
 	    "char *"
 	]

@@ -14,34 +14,3 @@ program
 
 process.exit(0);
 
-if (program.args.length !== 1 && program.args.length !== 2) {
-    console.error('js2c should be called with an input and output file, or one arguments if output to stdout');
-    process.exit(1);
-}
-
-var infile = program.args[0];
-try {
-    var content = fs.readFileSync(infile, 'utf-8');
-} catch(e) {
-    console.error('Error opening: ' + infile);
-    process.exit(1);
-}
-
-var ast = esprima.parse(content);
-
-var transformer = new js2c.Transformer(ast, "entry"); // TODO
-var cSource = transformer.transfer();
-
-if (program.args.length === 2) {
-    var outfile = program.args[1];
-
-    try {
-	fs.writeFileSync(outfile, cSource);
-    } catch (e) {
-	console.error('Error writing to: ' + outfile);
-	process.exit(1);
-    }
-
-} else {
-    console.info(JSON.stringify(cSource));
-}

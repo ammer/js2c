@@ -10,8 +10,8 @@ program
     .version(require('./package.json').version)
     .alias('t')
     .usage('<infile> [outfile]')
-    .option('-i, --include', 'function definition json file')
-    .option('-e, --entry', 'entry function name, default: "entry"')
+    .option('-i, --include <path>', 'function definition json file')
+    .option('-e, --entry <name>', 'entry function name, default: "entry"')
     .parse(process.argv);
 
 if (program.args.length !== 1 && program.args.length !== 2) {
@@ -19,6 +19,20 @@ if (program.args.length !== 1 && program.args.length !== 2) {
     process.exit(1);
 }
 
+// include
+if(program.include != undefined) {
+    var funcDefs = require(program.include);
+} else {
+    var funcDefs = {};
+}
+
+// entry
+var entry = program.entry;
+if(entry === undefined) {
+    entry = "entry";
+}
+
+// input file
 var infile = program.args[0];
 try {
     var content = fs.readFileSync(infile, 'utf-8');
@@ -27,11 +41,12 @@ try {
     process.exit(1);
 }
 
+// transform
 var ast = esprima.parse(content);
-
-var transformer = new js2c.Transformer(ast, "entry"); // TODO
+var transformer = new js2c.Transformer(ast, entry, funcDefs);
 var cSource = transformer.transfer();
 
+// output
 if (program.args.length === 2) {
     var outfile = program.args[1];
 

@@ -9,9 +9,32 @@ program
     .alias('e')
     .description('hello')
     .usage('<infile>')
-    .option('-i, --include', 'function definition json file')
+    .option('-m, --mock <path>', 'function definition file')
     .parse(process.argv);
 
-var js2c = require('./lib/exec.js'),
-    fs = require('fs'),
-    esprima = require('esprima');
+var //js2c = require('./lib/exec.js'),
+    fs = require('fs');
+
+// mock
+var mockFile = program.mock;
+if(mockFile !== undefined) {
+    try {
+	var mock = fs.readFileSync(mockFile, 'utf-8');
+	eval(mock);
+    } catch(e) {
+	console.error('Error opening: ' + infile);
+	process.exit(1);
+    }
+}
+
+// infile
+var infile = program.args[0];
+try {
+    var content = fs.readFileSync(infile, 'utf-8');
+    eval(content)
+} catch(e) {
+    console.error('Error opening: ' + infile);
+    process.exit(1);
+}
+
+process.exit(0);
