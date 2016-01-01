@@ -1,0 +1,53 @@
+{
+    httpPost: {
+	returnType: "void",
+	paramTypes: [
+	    "char *",
+	    "char *",
+	    "void *(char *)",
+	    "void *(int, char *)"
+	]
+    },
+
+    httpGet: {
+	returnType: "void",
+	paramTypes: [
+	    "char *",
+	    "void *(char *)",
+	    "void *(int, char *)"
+	]
+    },
+
+    numBetween: {
+	returnType: "double",
+	paramTypes: [
+	    "char *",
+	    "char *"
+	]
+    },
+
+    messageBox: {
+	returnType: "void",
+	paramTypes: [
+	    "char *"
+	]
+    },
+
+    finish: {
+	returnType: "void",
+	paramTypes: []
+    },
+
+    failed: {
+	returnType: "void",
+	paramTypes: []
+    },
+
+    hasString: {
+	returnType: "int",
+	paramTypes: [
+	    "char *",
+	    "char *"
+	]
+    }
+}

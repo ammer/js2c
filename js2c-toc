@@ -8,14 +8,14 @@ var js2c = require('./lib/transformer.js');
 
 program
     .version(require('./package.json').version)
-    .command('toc [infile] [outfile]', 'transform [infile] to [outfile]', {isDerfault: true})
-    .command('exec <infile>', 'execute as javascript')
+    .alias('t')
+    .usage('<infile> [outfile]')
+    .option('-i, --include', 'function definition json file')
+    .option('-e, --entry', 'entry function name, default: "entry"')
     .parse(process.argv);
 
-process.exit(0);
-
 if (program.args.length !== 1 && program.args.length !== 2) {
-    console.error('js2c should be called with an input and output file, or one arguments if output to stdout');
+    console.error('js2c exec should be called with an input and output file, or one arguments if output to stdout');
     process.exit(1);
 }
 

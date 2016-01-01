@@ -1,0 +1,17 @@
+#! /usr/bin/env node
+
+var program = require('commander');
+
+program
+    .version(require('./package.json').version)
+
+program
+    .alias('e')
+    .description('hello')
+    .usage('<infile>')
+    .option('-i, --include', 'function definition json file')
+    .parse(process.argv);
+
+var js2c = require('./lib/exec.js'),
+    fs = require('fs'),
+    esprima = require('esprima');
