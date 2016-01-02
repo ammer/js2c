@@ -1,5 +1,5 @@
  function httpPost(url, data, success, fail) {
-     console.log(">> httpPost");
+     console.log("\n>> httpPost");
      success("11");
  }
 
@@ -18,7 +18,7 @@ function messageBox(msg) {
 }
 
 function finish() {
-    console.log(">> finish");
+    console.log(">> finish\n");
 }
 
 function failed() {
