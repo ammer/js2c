@@ -16,5 +16,13 @@
 	    "char * *(char *)",
 	    "int *(char *)"
 	]
+    },
+
+    "fun3": {
+	"returnType": "int",
+	"paramTypes": [
+	    "int",
+	    "char *"
+	]
     }
 }
