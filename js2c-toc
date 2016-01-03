@@ -6,7 +6,7 @@ var program = require('commander'),
     esprima = require('esprima'),
     rocambole = require('rocambole');
 
-var ccodegen = require('./lib/ccodegen.js'),
+var ccodegen = require('./lib/ccodegen.js')(),
     utils = require('./lib/utils.js');
 
 program
@@ -23,7 +23,7 @@ if (program.args.length !== 1 && program.args.length !== 2) {
 }
 
 // include
-var funcDefs = include(program.include);
+var funcDefs = utils.include(program.include);
 
 // entry
 var entry = program.entry;
@@ -40,7 +40,7 @@ var inferPass = require('./lib/inferpass.js')();
 var newAst = inferPass.run(ast, funcDefs);
 
 // codegen
-var gen = ccodegen(newAst, entry, funcDefs);
+var gen = ccodegen(newAst, entry, inferPass.getTypes());
 var cSource = gen.generate();
 
 // output
