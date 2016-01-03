@@ -23,11 +23,6 @@ if (program.args.length !== 1 && program.args.length !== 2) {
 }
 
 // include
-// if (_.isString(program.include)) {
-//     var funcDefs = include(program.include);
-// } else {
-//     var funcDefs = {};
-// }
 var funcDefs = include(program.include);
 
 // entry
@@ -38,13 +33,6 @@ if(entry === undefined) {
 
 // input file
 var infile = program.args[0];
-// try {
-//     var content = utils.readFile(infile);
-// } catch(e) {
-//     console.error('Error opening: ' + infile);
-//     process.exit(1);
-// }
-// var ast = rocambole.parse(content);
 var ast = utils.astFromJsFile(infile);
 
 // type inference

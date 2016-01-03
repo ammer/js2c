@@ -14,4 +14,15 @@ describe("VarTypeInferer", function() {
 
 	expect(types.a).toEqual("int");
     });
+
+    it("Get function's return type correctly", function() {
+	var ast = utils.astFromJsFile('./spec/fixtures/function.js');
+	var newAst = inferor.run(ast);
+	var types = inferor.getTypes();
+
+	expect(types.a).toEqual("int");
+	expect(types.b).toEqual("char *");
+	expect(types.c).toEqual("int");
+	expect(types.d).toEqual("char *");
+    });
 });
