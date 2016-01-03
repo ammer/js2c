@@ -4,8 +4,6 @@ var program = require('commander'),
     fs = require('fs'),
     esprima = require('esprima');
 
-var js2c = require('./lib/transformer.js');
-
 program
     .version(require('./package.json').version)
     .command('toc [infile] [outfile]', 'transform [infile] to [outfile]', {isDerfault: true})

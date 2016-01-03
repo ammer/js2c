@@ -6,7 +6,7 @@ var program = require('commander'),
     esprima = require('esprima'),
     rocambole = require('rocambole');
 
-var js2c = require('./lib/transformer.js'),
+var ccodegen = require('./lib/ccodegen.js'),
     utils = require('./lib/utils.js');
 
 program
@@ -40,8 +40,8 @@ var inferPass = require('./lib/inferpass.js')();
 var newAst = inferPass.run(ast, funcDefs);
 
 // codegen
-var transformer = new js2c.Transformer(newAst, entry, funcDefs);
-var cSource = transformer.transfer();
+var gen = ccodegen(newAst, entry, funcDefs);
+var cSource = gen.generate();
 
 // output
 if (program.args.length === 2) {
