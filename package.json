@@ -15,9 +15,15 @@
     "c",
     "script"
   ],
+    "bin": {
+	"js2c": "./bin/js2c",
+	"js2c-exec": "./bin/js2c-exec",
+	"js2c-toc": "./bin/js2c-toc"
+    },
   "author": "ammer.y@gmail.com",
   "license": "MIT",
   "dependencies": {
+    "colors": "^1.1.2",
     "commander": "^2.9.0",
     "esprima": "^2.7.1",
     "rocambole": "^0.7.0",

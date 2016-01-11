@@ -3,23 +3,23 @@ describe("VarTypeInferer", function() {
 	utils = require('../lib/utils.js');
 
     beforeEach(function() {
-	inferor = require('../lib/inferpass.js')();
+	inferor = require('../lib/typeinfer.js')();
     });
 
     it("Inferer type of variables", function() {
-	var funcDefs = utils.include('./spec/fixtures/test.include.js');
-	var ast = utils.astFromJsFile('./spec/fixtures/var.js');
-	var newAst = inferor.run(ast, funcDefs);
-	var types = inferor.getTypes();
+	var funcDefs = utils.include('./spec/fixtures/test.include.js'),
+	    ast = utils.astFromJsFile('./spec/fixtures/var.js'),
+	    newAst = inferor.run(ast, funcDefs),
+	    types = inferor.getTypes();
 
 	expect(types.a).toEqual("int");
     });
 
     it("Get function's return type correctly", function() {
-	var ast = utils.astFromJsFile('./spec/fixtures/function.js');
-	var funcDefs = utils.include('./spec/fixtures/test.include.js');
-	var newAst = inferor.run(ast, funcDefs);
-	var types = inferor.getTypes();
+	var ast = utils.astFromJsFile('./spec/fixtures/function.js'),
+	    funcDefs = utils.include('./spec/fixtures/test.include.js'),
+	    newAst = inferor.run(ast, funcDefs),
+	    types = inferor.getTypes();
 
 	utils.output("Types: " + JSON.stringify(types));
 	
@@ -34,6 +34,16 @@ describe("VarTypeInferer", function() {
 	expect(types['f1[1]']).toEqual("char *");
 	expect(types['f1']).toEqual("int");
 
+    });
+
+    it("Rename variable name in different scope", function() {
+	var ast = utils.astFromJsFile('./spec/fixtures/varScope.js'),
+	    funcDefs = utils.include('./spec/fixtures/test.include.js'),
+	    newAst = inferor.run(ast, funcDefs),
+	    types = inferor.getTypes();
+	
+	// utils.output("Types: " + JSON.stringify(types));
 	
     });
+    
 });

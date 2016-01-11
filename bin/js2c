@@ -1,14 +1,19 @@
 #! /usr/bin/env node
-
+    
 var program = require('commander'),
     fs = require('fs'),
     esprima = require('esprima');
 
 program
-    .version(require('./package.json').version)
+    .version(require('../package.json').version)
     .command('toc [infile] [outfile]', 'transform [infile] to [outfile]', {isDerfault: true})
     .command('exec <infile>', 'execute as javascript')
     .parse(process.argv);
 
 process.exit(0);
 
+/*
+  Local Variables:
+  mode: javascript
+  End:
+*/

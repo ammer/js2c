@@ -1,12 +1,12 @@
 #! /usr/bin/env node
-
+    
 var program = require('commander'),
     fs = require('fs');
 
 program
-    .version(require('./package.json').version)
+    .version(require('../package.json').version)
     .alias('e')
-    .description('hello')
+    .description('exec script in javascript')
     .usage('<infile>')
     .option('-m, --mock <path>', 'function definition file')
     .parse(process.argv);
@@ -36,3 +36,10 @@ try {
 
 process.stdout.write("\n");
 process.exit(0);
+
+
+/*
+  Local Variables:
+  mode: javascript
+  End:
+*/
