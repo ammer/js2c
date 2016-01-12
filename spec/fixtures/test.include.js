@@ -13,8 +13,18 @@
 	"returnType": "void",
 	"paramTypes": [
 	    "char *",
-	    "char * *(char *)",
-	    "int *(char *)"
+	    {
+		"returnType": "char *",
+		"paramTypes": [
+		    "char *"
+		]
+	    },
+	    {
+		"returnType": "int",
+		"paramTypes": [
+		    "char *"
+		]
+	    }
 	]
     },
 

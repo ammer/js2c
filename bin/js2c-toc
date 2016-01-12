@@ -37,11 +37,11 @@ var infile = program.args[0];
 var ast = utils.astFromJsFile(infile);
 
 // type inference
-var inferPass = require('../lib/typeinfer.js')();
-var newAst = inferPass.run(ast, funcDefs);
+var infer = new (require('../lib/typeinfer.js')())(ast, funcDefs);
+var newAst = infer.run();
 
 // codegen
-var gen = ccodegen(newAst, entry, inferPass.getTypes());
+var gen = ccodegen(newAst, entry, infer.types);
 var cSource = gen.generate();
 
 // output
