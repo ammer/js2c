@@ -7,7 +7,7 @@ httpGet("http://remote.site.com/path?p1=v1",
 		return -1;
 	    }
 	},
-	function error(status, data) {
-	    return status + 0;
+	function error(data) {
+	    return 0;
 	});
 

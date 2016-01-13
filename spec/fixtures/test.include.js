@@ -28,6 +28,14 @@
 	]
     },
 
+    "strContain": {
+	"returnType": "int",
+	"paramTypes": [
+	    "char *",
+	    "char *"
+	]
+    },
+    
     "fun3": {
 	"returnType": "int",
 	"paramTypes": [

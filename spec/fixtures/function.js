@@ -23,7 +23,6 @@ httpGet("http://localhost/index.html",
 (function(){return;})();
 (function(){})();
 
-var p1;
 function f1(f1p1, f1p2) {
     return fun3(f1p1, f1p2);
 }
