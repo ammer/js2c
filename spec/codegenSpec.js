@@ -38,7 +38,15 @@ describe("CCodegen", function() {
 	});
 
 	it("Function call", function() {
-	    
+	    check([
+		{
+		    js: [
+			'httpGet("http://localhost/index.html",',
+			'function(data) {return "hello";},',
+			'function(error) {return 1;});'].join("\n"),
+		    c: / /
+		}
+	    ]);
 	});
 
 	it("Define function", function() {
