@@ -1,65 +1,70 @@
 #! /usr/bin/env node
 
-var program = require('commander'),
-    fs = require('fs'),
-    colors = require('colors'),
-    _ = require('underscore'),
-    esprima = require('esprima'),
-    rocambole = require('rocambole');
+try {
+    var program = require('commander'),
+	fs = require('fs'),
+	colors = require('colors'),
+	_ = require('underscore'),
+	esprima = require('esprima'),
+	rocambole = require('rocambole');
 
-var ccodegen = require('../lib/ccodegen.js')(),
-    utils = require('../lib/utils.js');
+    var ccodegen = require('../lib/ccodegen.js')(),
+	utils = require('../lib/utils.js');
 
-program
-    .version(require('../package.json').version)
-    .alias('t')
-    .usage('<infile> [outfile]')
-    .option('-i, --include <path>', 'function definition json file')
-    .option('-e, --entry <name>', 'entry function name, default: "entry"')
-    .parse(process.argv);
+    program
+	.version(require('../package.json').version)
+	.alias('t')
+	.usage('<infile> [outfile]')
+	.option('-i, --include <path>', 'function definition json file')
+	.option('-e, --entry <name>', 'entry function name, default: "entry"')
+	.parse(process.argv);
 
-if (program.args.length !== 1 && program.args.length !== 2) {
-    console.error('js2c exec should be called with an input and output file, or one arguments if output to stdout');
-    process.exit(1);
-}
-
-// include
-var funcDefs = utils.include(program.include);
-
-// entry
-var entry = program.entry;
-if(entry === undefined) {
-    entry = "entry";
-}
-
-// input file
-var infile = program.args[0];
-var ast = utils.astFromJsFile(infile);
-
-// type inference
-var infer = new (require('../lib/typeinfer.js')())(ast, funcDefs);
-var newAst = infer.run();
-
-// codegen
-var gen = ccodegen(newAst, entry, infer.types);
-var cSource = gen.generate();
-
-// output
-if (program.args.length === 2) {
-    var outfile = program.args[1];
-
-    try {
-	fs.writeFileSync(outfile, cSource);
-    } catch (e) {
-	console.error('Error writing to: ' + outfile);
+    if (program.args.length !== 1 && program.args.length !== 2) {
+	console.error('js2c exec should be called with an input and output file, or one arguments if output to stdout');
 	process.exit(1);
     }
-} else {
-    console.info(JSON.stringify(cSource));
+
+    // include
+    var funcDefs = utils.include(program.include);
+
+    // entry
+    var entry = program.entry;
+    if(entry === undefined) {
+	entry = "entry";
+    }
+
+    // input file
+    var infile = program.args[0];
+    var ast = utils.astFromJsFile(infile);
+
+    // type inference
+    var infer = new (require('../lib/typeinfer.js')())(ast, funcDefs);
+    var newAst = infer.run();
+
+    // codegen
+    var gen = ccodegen(newAst, entry, infer.types, funcDefs);
+    var cSource = gen.generate();
+
+    // output
+    if (program.args.length === 2) {
+	var outfile = program.args[1];
+
+	try {
+	    fs.writeFileSync(outfile, cSource);
+	} catch (e) {
+	    console.error('Error writing to: ' + outfile);
+	    process.exit(1);
+	}
+    } else {
+	console.info(JSON.stringify(cSource));
+    }
+
+    process.exit(0);
+}//  catch(e) {
+//     utils.error(colors.red("Error: " + e.toString()));
+// }
+finally {
 }
-
-process.exit(0);
-
 
 /*
   Local Variables:

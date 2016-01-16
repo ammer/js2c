@@ -65,7 +65,7 @@ Following is an example of include file:
     }
 }
 ```
-#### 'indent'
+#### indent
 Sorry for the output c file is un-formatted, please use **indent** before you read it :-).
 ```shell
 indent output.c [formatted_output.c]

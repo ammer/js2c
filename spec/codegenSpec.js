@@ -30,6 +30,10 @@ describe("CCodegen", function() {
 	    {
 		js: "var a = 'hello';",
 		c: /\s*static\s*char\s*\*\s*a\s*;\s*void\s*entry\s*(.*)\s*{\s*a\s*=\s*"hello"\s*;\s*}\s*/
+	    },
+	    {
+		js: "var a = [1,2,3];",
+		c: /.*int\[\].*/
 	    }
 	];
 	check(pairs);
