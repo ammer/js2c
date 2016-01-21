@@ -1,6 +1,6 @@
 {
   "name": "js2c",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "transform javascript-like script program to c source code",
   "main": "index.js",
   "scripts": {
