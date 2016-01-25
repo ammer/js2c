@@ -103,6 +103,19 @@ describe("CCodegen", function() {
 	    ]);
 	});
     });
+
+    it("Support function call as array member", function() {
+	check([
+	    {
+		js: "var a = [func1(), 3];",
+		c: / /
+	    },
+	    {
+		js: "var b = [3, func1()];",
+		c: / /
+	    }
+	]);
+    });
     
     it("If statement", function() {
 	

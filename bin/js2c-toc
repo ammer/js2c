@@ -60,9 +60,10 @@ try {
     }
 
     process.exit(0);
-}//  catch(e) {
-//     utils.error(colors.red("Error: " + e.toString()));
-// }
+} catch(e) {
+    //     utils.error(colors.red("Error: " + e.toString()));
+    utils.error("Error:\n" + e.stack);
+}
 finally {
 }
 
