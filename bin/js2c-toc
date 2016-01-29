@@ -61,8 +61,9 @@ try {
 
     process.exit(0);
 } catch(e) {
-    //     utils.error(colors.red("Error: " + e.toString()));
-    utils.error("Error:\n" + e.stack);
+    //  utils.error(colors.red("Error: " + e.toString()));
+    //  utils.error("Error:\n" + e.stack);
+    throw e;
 }
 finally {
 }
